@@ -1,0 +1,22 @@
+@import '../../assets/style/vars';
+.button {
+  width: 100%;
+  border: $border-primary;
+  padding: $space-medium;
+  font-weight: 600;
+  // cursor: pointer;
+  transition: $transition-default;
+  color: $color-primary;
+  background: transparent;
+}
+
+.button:hover {
+  color: $color-text-dark;
+  background: $color-primary;
+}
+
+.button:disabled {
+  color: $color-disabled;
+  border: $border-disabled;
+  background: transparent;
+}

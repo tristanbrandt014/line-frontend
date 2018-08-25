@@ -1,0 +1,14 @@
+@import '../../assets/style/vars';
+
+.errors {
+  font-size: 14px;
+}
+
+li {
+  color: $color-danger;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}

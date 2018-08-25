@@ -1,0 +1,38 @@
+@import '../../assets/style/vars';
+
+.loading {
+  width: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+.loading-bar {
+  display: inline-block;
+  width: 2px;
+  height: 24px;
+  animation: loading 1s ease-in-out infinite;
+  background-color: $color-text;
+}
+.loading-bar:nth-child(1) {
+  animation-delay: 0;
+}
+.loading-bar:nth-child(2) {
+  animation-delay: 0.09s;
+}
+.loading-bar:nth-child(3) {
+  animation-delay: 0.18s;
+}
+.loading-bar:nth-child(4) {
+  animation-delay: 0.27s;
+}
+
+@keyframes loading {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1, 2.2);
+  }
+  40% {
+    transform: scale(1);
+  }
+}

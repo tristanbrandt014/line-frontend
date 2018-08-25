@@ -1,15 +1,38 @@
 <div class="container">
-  <div class="heading">
-    <h1 class="title">line</h1>
-  </div>
-  <div class="form">
-    <form action="">
-      <div class="input">
-        <app-input name="username" type="text" label="Username"></app-input>
-      </div>
-      <div class="input">
-        <app-input name="password" type="password" label="Password"></app-input>
-      </div>
-    </form>
-  </div>
+  <section>
+    <div class="heading">
+      <h1 class="title">line</h1>
+    </div>
+    <div class="form">
+      <form (submit)="handleSubmit($event)" #loginForm="ngForm" action="">
+        <div class="input">
+          <div class="line-input-container">
+            <label class="line-input-label" for="username">username</label>
+            <input [class.bad-invalid]="usernameError" [(ngModel)]="model.username" required placeholder="username" class="line-input"
+              type="text" name="username" id="username" />
+          </div>
+        </div>
+        <div class="input">
+          <label class="line-input-label" for="password">password</label>
+          <input [class.bad-invalid]="passwordError" [(ngModel)]="model.password" required placeholder="password" class="line-input"
+            type="password" name="password" id="password" />
+        </div>
+        <div class="button">
+          <app-button [disabled]="loading">log in</app-button>
+        </div>
+        <input type="submit" style="display:none">
+      </form>
+      <app-error-list *ngIf="errors.length" [errors]="errors"></app-error-list>
+    </div>
+  </section>
+  <section>
+    <div class="loader" *ngIf="loading">
+      <app-loader></app-loader>
+    </div>
+  </section>
+  <section>
+    <div class="no-account">
+      <span>Don't have an account? <a href="">Sign up</a></span>
+    </div>
+  </section>
 </div>

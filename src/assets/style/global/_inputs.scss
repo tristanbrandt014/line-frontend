@@ -1,0 +1,20 @@
+@import '../vars';
+.line-input {
+  width: 100%;
+  background: transparent;
+  border: $border-default;
+  padding: $space-medium $space-small;
+}
+
+.line-input-label {
+  display: none;
+}
+
+.line-input-container {
+  width: 100%;
+}
+
+.ng-invalid.ng-dirty.line-input,
+.bad-invalid.line-input {
+  border: $border-danger;
+}

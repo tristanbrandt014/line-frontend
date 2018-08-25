@@ -22,10 +22,14 @@
     "@angular/router": "^6.1.0",
     "@types/async": "2.0.31",
     "apollo-angular-boost": "^1.0.0",
+    "apollo-link-context": "^1.0.8",
+    "apollo-link-ws": "^1.0.8",
     "core-js": "^2.5.4",
     "graphql": "^0.13.2",
+    "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
     "rxjs": "^6.0.0",
+    "subscriptions-transport-ws": "^0.9.14",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

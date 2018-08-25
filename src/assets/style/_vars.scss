@@ -1,13 +1,16 @@
 // Fonts
 $font-primary: 'Open Sans';
 $font-secondary: 'Lato';
+$font-size-small: 13px;
 
 // Colors
-$background-color: rgba(39, 39, 39, 1);
-$primary-color: rgba(88, 252, 236, 1);
-$primary-color-dark: rgba(46, 132, 123, 1);
-$text-color: rgba(247, 247, 247, 1);
-$error-color: rgba(166, 52, 70, 1);
+$color-background: rgba(39, 39, 39, 1);
+$color-primary: rgba(88, 252, 236, 1);
+$color-primary-dark: rgba(46, 132, 123, 1);
+$color-text: rgba(247, 247, 247, 1);
+$color-danger: rgba(166, 52, 70, 1);
+$color-text-dark: #222;
+$color-disabled: #888;
 
 // Spacing
 $space-small: 5px;
@@ -16,6 +19,10 @@ $space-large: 15px;
 
 // Border
 $border-width: 2px;
+$border-default: $border-width solid $color-text;
+$border-primary: $border-width solid $color-primary;
+$border-danger: $border-width solid $color-danger;
+$border-disabled: $border-width solid $color-disabled;
 
-$border-default: $border-width solid $text-color;
-$border-primary: $border-width solid $primary-color;
+// Transition
+$transition-default: all 0.2s ease;

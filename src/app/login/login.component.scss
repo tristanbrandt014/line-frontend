@@ -14,6 +14,8 @@
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .input {
@@ -22,4 +24,20 @@
 
 .form {
   padding: $space-large;
+}
+
+.no-account {
+  font-size: $font-size-small;
+  padding-bottom: $space-large * 2;
+  display: flex;
+  justify-content: center;
+}
+
+a {
+  color: $color-primary;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
 }
