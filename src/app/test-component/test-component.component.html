@@ -1,0 +1,12 @@
+<div>
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="errors">Error</div>
+  <div *ngIf="users">
+    <div *ngFor="let user of users">
+      <div>
+        <h1>{{user.displayName}}</h1>
+        <p>@{{user.username}} - {{user.id}}</p>
+      </div>
+    </div>
+  </div>
+</div>

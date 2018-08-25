@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+// First things first
+@import '~normalize.css';
+
+// Global Styles
+@import 'assets/style/global/fonts';
+@import 'assets/style/global/colors';
+@import 'assets/style/global/normalize';

@@ -1,0 +1,21 @@
+// Fonts
+$font-primary: 'Open Sans';
+$font-secondary: 'Lato';
+
+// Colors
+$background-color: rgba(39, 39, 39, 1);
+$primary-color: rgba(88, 252, 236, 1);
+$primary-color-dark: rgba(46, 132, 123, 1);
+$text-color: rgba(247, 247, 247, 1);
+$error-color: rgba(166, 52, 70, 1);
+
+// Spacing
+$space-small: 5px;
+$space-medium: 10px;
+$space-large: 15px;
+
+// Border
+$border-width: 2px;
+
+$border-default: $border-width solid $text-color;
+$border-primary: $border-width solid $primary-color;
