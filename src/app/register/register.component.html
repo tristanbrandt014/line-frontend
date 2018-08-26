@@ -13,12 +13,21 @@
           </div>
         </div>
         <div class="input">
-          <label class="line-input-label" for="password">password</label>
-          <input [class.bad-invalid]="passwordError" [(ngModel)]="model.password" required placeholder="password" class="line-input"
-            type="password" name="password" id="password" />
+          <div class="line-input-container">
+            <label class="line-input-label" for="displayName">display name</label>
+            <input [(ngModel)]="model.displayName" required placeholder="display name" class="line-input" type="text" name="displayName"
+              id="displayName" />
+          </div>
+        </div>
+        <div class="input">
+          <div class="line-input-container">
+            <label class="line-input-label" for="password">password</label>
+            <input [class.bad-invalid]="passwordError" [(ngModel)]="model.password" required placeholder="password" class="line-input"
+              type="password" name="password" id="password" />
+          </div>
         </div>
         <div class="button">
-          <app-button [disabled]="loading">log in</app-button>
+          <app-button [disabled]="loading">sign up</app-button>
         </div>
         <input type="submit" style="display:none">
       </form>
@@ -32,7 +41,7 @@
   </section>
   <section>
     <div class="no-account">
-      <span>don't have an account? <a routerLink="/register">sign up</a></span>
+      <span>already have an account? <a routerLink="/login">log in</a></span>
     </div>
   </section>
 </div>

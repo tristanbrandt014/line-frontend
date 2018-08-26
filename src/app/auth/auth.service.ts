@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
+import { Apollo } from 'apollo-angular';
 
 // See https://blog.angular-university.io/angular-jwt-authentication/
 
@@ -7,7 +8,7 @@ import * as moment from 'moment';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor() {}
+  constructor(private apollo: Apollo) {}
 
   public setSession(token: string, expiresIn: number) {
     const expiresAt = moment().add(expiresIn, 'second');
@@ -17,6 +18,7 @@ export class AuthService {
   }
 
   logout() {
+    this.apollo.getClient().cache.reset();
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
   }

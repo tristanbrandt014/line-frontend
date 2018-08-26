@@ -1,0 +1,38 @@
+@import '../../assets/style/vars';
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  flex: 0 0 auto;
+}
+.container {
+  padding: $space-large;
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  flex: 0 0 auto;
+}
+.message-container {
+  padding-top: 20px;
+  flex: 1 1 100%;
+}
+.button {
+  margin-top: 20px;
+}
+form {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}

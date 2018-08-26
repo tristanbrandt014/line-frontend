@@ -11,6 +11,8 @@ import { LoaderComponent } from './loader/loader.component';
 import { FormsModule } from '@angular/forms';
 import { ErrorListComponent } from './error-list/error-list.component';
 import { HomeComponent } from './home/home.component';
+import { NgxsModule } from '@ngxs/store';
+import { states } from './app.state';
 
 import { Apollo, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular-link-http';
@@ -19,6 +21,17 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { WebSocketLink } from 'apollo-link-ws';
 import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
+import { RegisterComponent } from './register/register.component';
+import { onError } from 'apollo-link-error';
+import { errors } from '../utils';
+import { Router } from '@angular/router';
+import { UserListComponent } from './user-list/user-list.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { PeopleComponent } from './people/people.component';
+import { NewChatComponent } from './new-chat/new-chat.component';
+import { HeaderBackComponent } from './header-back/header-back.component';
 
 @NgModule({
   declarations: [
@@ -28,21 +41,30 @@ import { getMainDefinition } from 'apollo-utilities';
     ButtonComponent,
     LoaderComponent,
     ErrorListComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent,
+    UserListComponent,
+    DashboardComponent,
+    HeaderComponent,
+    SidebarComponent,
+    PeopleComponent,
+    NewChatComponent,
+    HeaderBackComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ApolloModule
+    ApolloModule,
+    NgxsModule.forRoot(states)
   ],
   providers: [HttpLink],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(apollo: Apollo, httpLink: HttpLink) {
-    const http = httpLink.create({ uri: 'http://localhost:4000/graphql' });
+  constructor(apollo: Apollo, httpLink: HttpLink, router: Router) {
+    const http = httpLink.create({ uri: 'http://192.168.0.153:4000/graphql' });
 
     const ws = new WebSocketLink({
       uri: `ws://localhost:4000/graphql`,
@@ -64,6 +86,18 @@ export class AppModule {
       }
     });
 
+    const authErrorLink = onError(({ graphQLErrors, networkError }) => {
+      if (graphQLErrors) {
+        graphQLErrors.map(({ message, locations, path }) => {
+          if (message === errors.FAILED_TO_DECODE_TOKEN) {
+            localStorage.removeItem('id_token');
+            localStorage.removeItem('expires_at');
+            router.navigate(['login']);
+          }
+        });
+      }
+    });
+
     const link = split(
       // split based on operation type
       ({ query }) => {
@@ -80,7 +114,7 @@ export class AppModule {
     );
 
     apollo.create({
-      link: auth.concat(http),
+      link: auth.concat(authErrorLink).concat(http),
       cache: new InMemoryCache()
       // other options like cache
     });

@@ -1,0 +1,34 @@
+<div class="container" [class.open]="open$ | async">
+  <div class="header">
+    <div>
+      <div class="loader" *ngIf="loading">
+        <app-loader></app-loader>
+      </div>
+      <div *ngIf="!loading">
+        <h3>{{user.displayName}}</h3>
+        <div class="username">@{{user.username}}</div>
+      </div>
+    </div>
+    <div>
+      <i class="icon-close icon" (click)="close()"></i>
+    </div>
+  </div>
+  <div class="links">
+    <a class="link" routerLink="/dashboard/chats" (click)="close()" routerLinkActive="active">
+      <i class="icon-bubbles"></i>
+      <div>chats</div>
+    </a>
+    <a class="link" routerLink="/dashboard/people" (click)="close()" routerLinkActive="active">
+      <i class="icon-people"></i>
+      <div>people</div>
+    </a>
+    <a class="link" routerLink="/dashboard/account" (click)="close()" routerLinkActive="active">
+      <i class="icon-user"></i>
+      <div>account</div>
+    </a>
+    <a class="link" routerLink="/login" (click)="logout()" routerLinkActive="active">
+      <i class="icon-logout"></i>
+      <div>logout</div>
+    </a>
+  </div>
+</div>

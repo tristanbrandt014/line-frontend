@@ -1,0 +1,54 @@
+@import '../../assets/style/vars';
+
+$sidebar-width: 220px;
+
+.container {
+  width: $sidebar-width;
+  height: 100%;
+  position: absolute;
+  background: $color-background-light;
+  top: 0;
+  left: -$sidebar-width - 20px;
+  transition: $transition-default;
+  box-shadow: 1px 0px 10px -3px rgba(0, 0, 0, 0.75);
+}
+
+.container.open {
+  left: 0px;
+}
+
+.username {
+  font-size: 14px;
+  color: $color-disabled;
+  margin-top: 2px;
+}
+
+.header {
+  display: flex;
+  padding: $space-large;
+  justify-content: space-between;
+}
+
+.links {
+  margin-top: 10px;
+}
+
+.link {
+  display: flex;
+  padding: $space-medium $space-large;
+  align-items: center;
+  text-decoration: none;
+  i {
+    margin-right: $space-medium;
+  }
+  &.active * {
+    color: $color-primary;
+  }
+  &:hover * {
+    color: $color-primary-dark;
+  }
+}
+
+h3 {
+  margin: 0;
+}

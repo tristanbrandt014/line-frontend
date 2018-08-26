@@ -1,0 +1,48 @@
+@import '../../assets/style/vars';
+
+.container {
+  padding: $space-large;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.nobody {
+  font-size: 26px;
+  &-subtitle,
+  &-subtitle * {
+    margin-top: 2px;
+    font-size: 14px;
+    color: $color-disabled;
+  }
+}
+
+.list {
+  margin-top: 20px;
+}
+
+.user {
+  padding: $space-small;
+  text-decoration: none;
+  display: block;
+  transition: $transition-default;
+  .username {
+    margin-top: 2px;
+    font-size: 14px;
+    color: $color-disabled;
+  }
+  &:hover {
+    background: $color-background-light;
+  }
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}

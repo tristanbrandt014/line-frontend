@@ -1,6 +1,6 @@
-<p *ngIf="loading">
-  loading
-</p>
+<div *ngIf="loading" class="loader">
+  <app-loader></app-loader>
+</div>
 <p *ngIf="!loading">
   loaded
 </p>

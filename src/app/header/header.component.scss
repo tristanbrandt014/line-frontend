@@ -1,0 +1,15 @@
+@import '../../assets/style/vars';
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: $space-large;
+}
+
+.left,
+.right {
+  display: flex;
+}
+
+.left > * {
+  margin-right: $space-large;
+}

@@ -1,0 +1,9 @@
+@import '~simple-line-icons/css/simple-line-icons.css';
+@import '../vars';
+
+.icon {
+  font-size: 25px;
+  &:hover {
+    color: $color-primary;
+  }
+}

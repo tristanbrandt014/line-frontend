@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="centerer" *ngIf="loading">
+    <app-loader></app-loader>
+  </div>
+  <div class="content" *ngIf="!loading">
+    <div *ngIf="!total" class="centerer">
+      <div>
+        <div class="nobody">
+          nobody here
+        </div>
+        <div class="nobody-subtitle">
+          Solitude, isolation, are painful things and beyond human endurance - <em>Jules Verne</em>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!!total">
+      <h2>People</h2>
+      <div class="list">
+        <a class="user" *ngFor="let user of users" routerLink="/chat/new/{{user.id}}">
+          <div class="display-name">{{user.displayName}}</div>
+          <div class="username">@{{user.username}}</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

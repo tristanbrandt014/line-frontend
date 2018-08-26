@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Apollo } from 'apollo-angular';
-import { getChat as getChatGQL } from '../graphql/queries';
+import { getUsers as getUsersGQL } from '../graphql/queries';
+import { IListResult } from '../../types/list';
+import { IUser, IUserListVariables } from '../../types';
 
 interface IResponse {
-  getChat: string;
+  getUsers: IListResult<IUser>;
 }
 
 @Component({
@@ -13,8 +15,8 @@ interface IResponse {
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  loading = false;
-  currentChat: string;
+  loading = true;
+  users: IUser[];
 
   private querySubscription: Subscription;
 
@@ -22,14 +24,18 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.querySubscription = this.apollo
-      .watchQuery<IResponse>({
-        query: getChatGQL
+      .watchQuery<IResponse, IUserListVariables>({
+        query: getUsersGQL,
+        variables: {
+          filters: {
+            onlyOthers: true
+          }
+        }
       })
       .valueChanges.subscribe(
         ({ data, loading }) => {
-          console.log('something');
           this.loading = loading;
-          this.currentChat = data.getChat;
+          this.users = data.getUsers.results;
         },
         error => {
           console.log(error);

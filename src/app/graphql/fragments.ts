@@ -7,3 +7,16 @@ export const UserFragment = gql`
     displayName
   }
 `;
+
+export const ChatFragment = gql`
+  fragment ChatFragment on Chat {
+    id
+    messages {
+      from {
+        ...UserFragment
+      }
+      content
+      read
+    }
+  }
+`;

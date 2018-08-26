@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
+    "@ngxs/store": "^3.2.0",
     "@types/async": "2.0.31",
     "apollo-angular-boost": "^1.0.0",
     "apollo-link-context": "^1.0.8",
@@ -29,6 +30,7 @@
     "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
     "rxjs": "^6.0.0",
+    "simple-line-icons": "^2.4.1",
     "subscriptions-transport-ws": "^0.9.14",
     "zone.js": "~0.8.26"
   },

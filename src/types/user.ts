@@ -9,8 +9,22 @@ export interface ILoginVariables {
   password: string;
 }
 
+export interface IRegisterVariables extends ILoginVariables {
+  displayName: string;
+}
+
 export interface IUserWithToken {
   user: IUser;
   token: string;
   expiresIn: number;
+}
+
+export interface IUserListFilters {
+  onlyOthers: boolean;
+}
+
+export interface IUserListVariables {
+  offset?: number;
+  first?: number;
+  filters: IUserListFilters;
 }
