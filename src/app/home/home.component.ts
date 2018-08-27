@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Apollo } from 'apollo-angular';
-import { getUsers as getUsersGQL } from '../graphql/queries';
+import { getChats as getChatsGQL } from '../graphql/queries';
 import { IListResult } from '../../types/list';
-import { IUser, IUserListVariables } from '../../types';
+import { IChat, IChatListVariables, IMessage } from '../../types/chat';
+import { elipsify } from '../../utils';
 
 interface IResponse {
-  getUsers: IListResult<IUser>;
+  getChats: IListResult<IChat>;
 }
 
 @Component({
@@ -16,26 +17,29 @@ interface IResponse {
 })
 export class HomeComponent implements OnInit, OnDestroy {
   loading = true;
-  users: IUser[];
-
-  private querySubscription: Subscription;
+  chats: IChat[];
+  query: Subscription;
+  total: number;
+  lastMessage: IMessage;
 
   constructor(private apollo: Apollo) {}
 
   ngOnInit() {
-    this.querySubscription = this.apollo
-      .watchQuery<IResponse, IUserListVariables>({
-        query: getUsersGQL,
+    this.query = this.apollo
+      .watchQuery<IResponse, IChatListVariables>({
+        query: getChatsGQL,
         variables: {
           filters: {
-            onlyOthers: true
+            mine: true
           }
-        }
+        },
+        fetchPolicy: 'network-only'
       })
       .valueChanges.subscribe(
         ({ data, loading }) => {
           this.loading = loading;
-          this.users = data.getUsers.results;
+          this.chats = data.getChats.results;
+          this.total = data.getChats.total;
         },
         error => {
           console.log(error);
@@ -43,7 +47,34 @@ export class HomeComponent implements OnInit, OnDestroy {
       );
   }
 
+  getLastMessage(chat: IChat): string {
+    const content = [...chat.messages].reverse()[0].content;
+    return elipsify(content, 30);
+  }
+
+  isMessageMine(chat: IChat, message: IMessage) {
+    return message.from.id !== chat.other.id;
+  }
+
+  getLastAuthor(chat: IChat): string {
+    const lastMessage = [...chat.messages].reverse()[0];
+    return this.isMessageMine(chat, lastMessage)
+      ? 'You'
+      : chat.other.displayName.split(' ')[0];
+  }
+
+  getUnreadCount(chat: IChat): number {
+    return chat.messages.reduce((count, message) => {
+      if (!this.isMessageMine(chat, message)) {
+        count++;
+      }
+      return count;
+    }, 0);
+  }
+
   ngOnDestroy() {
-    this.querySubscription.unsubscribe();
+    if (this.query) {
+      this.query.unsubscribe();
+    }
   }
 }

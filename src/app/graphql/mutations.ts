@@ -1,5 +1,5 @@
 import { gql } from 'apollo-angular-boost';
-import { UserFragment, ChatFragment } from './fragments';
+import { UserFragment, ChatFragment, MessageFragment } from './fragments';
 
 export const login = gql`
   mutation loginUser($username: String!, $password: String!) {
@@ -39,11 +39,19 @@ export const createChat = gql`
   mutation createChat($userId: String!, $message: String!) {
     createChat(userId: $userId, message: $message) {
       ...ChatFragment
-      users {
-        ...UserFragment
-      }
     }
   }
   ${UserFragment}
+  ${MessageFragment}
   ${ChatFragment}
+`;
+
+export const sendMessage = gql`
+  mutation sendMessage($message: String!, $chatId: String!) {
+    sendMessage(message: $message, chatId: $chatId) {
+      ...MessageFragment
+    }
+  }
+  ${MessageFragment}
+  ${UserFragment}
 `;

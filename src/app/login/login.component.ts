@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Apollo } from 'apollo-angular-boost';
 import { login as loginGQL } from '../graphql/mutations';
 import { Login } from './login.model';
 import { ILoginVariables, IUserWithToken } from '../../types';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   model = new Login('', '');
   errors: string[] = [];
   loading = false;
   passwordError = false;
   usernameError = false;
+  query: Subscription;
 
   constructor(
     private apollo: Apollo,
@@ -32,7 +34,7 @@ export class LoginComponent implements OnInit {
 
     if (validationResult.success) {
       this.loading = true;
-      this.apollo
+      this.query = this.apollo
         .mutate<IUserWithToken, ILoginVariables>({
           mutation: loginGQL,
           variables: {
@@ -55,4 +57,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  ngOnDestroy() {
+    if (this.query) {
+      this.query.unsubscribe();
+    }
+  }
 }

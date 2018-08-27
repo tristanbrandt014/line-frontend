@@ -1,13 +1,14 @@
 <div class="wrapper">
   <div class="header">
-    <app-header-back></app-header-back>
+    <app-header-back>
+      <h2 *ngIf="!loading">chat with {{user.displayName}}</h2>
+    </app-header-back>
   </div>
   <div class="container">
     <div class="centerer" *ngIf="loading">
       <app-loader></app-loader>
     </div>
     <div class="content" *ngIf="!loading">
-      <h2>chat with {{user.displayName}}</h2>
       <div class="message-container">
         <form (submit)="handleSubmit($event)" #newChatForm="ngForm" action="">
           <div class="input">

@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PeopleComponent } from './people/people.component';
 import { NewChatComponent } from './new-chat/new-chat.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard/chats', pathMatch: 'full' },
@@ -28,7 +29,12 @@ const routes: Routes = [
   },
   {
     path: 'chat/new/:user_id',
-    component: NewChatComponent
+    component: NewChatComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'chat/:id',
+    component: ChatComponent
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }

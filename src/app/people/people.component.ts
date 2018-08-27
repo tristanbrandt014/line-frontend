@@ -42,6 +42,8 @@ export class PeopleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.query.unsubscribe();
+    if (this.query) {
+      this.query.unsubscribe();
+    }
   }
 }

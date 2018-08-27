@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { NewChat } from './new-chat.model';
-import { IChat } from '../../types/chat';
+import { IChat, IChatVariables } from '../../types/chat';
 
 interface IUserWithMyChat extends IUser {
   myChat: null | {
@@ -17,12 +17,6 @@ interface IUserWithMyChat extends IUser {
 
 interface IResponse {
   getUser: IUserWithMyChat;
-}
-
-interface IVariables {
-  conditions: {
-    id: string;
-  };
 }
 
 interface IMutationResponse {
@@ -66,7 +60,7 @@ export class NewChatComponent implements OnInit, OnDestroy {
           const response = data as IMutationResponse;
           console.log(response);
           try {
-            const userData = store.readQuery<IResponse, IVariables>({
+            const userData = store.readQuery<IResponse, IChatVariables>({
               query: getUserGQL,
               variables: {
                 conditions: {
@@ -97,7 +91,7 @@ export class NewChatComponent implements OnInit, OnDestroy {
       .subscribe(params => {
         this.id = params.user_id;
         this.query = this.apollo
-          .watchQuery<IResponse, IVariables>({
+          .watchQuery<IResponse, IChatVariables>({
             query: getUserGQL,
             variables: {
               conditions: {
@@ -109,7 +103,11 @@ export class NewChatComponent implements OnInit, OnDestroy {
             ({ data, loading }) => {
               this.user = data.getUser;
               if (this.user.myChat) {
-                this.router.navigate(['dashboard']);
+                this.router
+                  .navigate(['dashboard/people'])
+                  .then(() =>
+                    this.router.navigate([`chat/${this.user.myChat.id}`])
+                  );
               }
               this.loading = loading;
             },

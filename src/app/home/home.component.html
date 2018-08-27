@@ -1,6 +1,36 @@
-<div *ngIf="loading" class="loader">
-  <app-loader></app-loader>
+<div class="container">
+  <div class="centerer" *ngIf="loading">
+    <app-loader></app-loader>
+  </div>
+  <div class="content" *ngIf="!loading">
+    <div *ngIf="!total" class="centerer">
+      <div>
+        <div class="nobody">
+          nothing here
+        </div>
+        <div class="nobody-subtitle">
+          Solitude, isolation, are painful things and beyond human endurance - <em>Jules Verne</em>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!!total">
+      <h2>Chats</h2>
+      <div class="list">
+        <a class="chat" *ngFor="let chat of chats" routerLink="/chat/{{chat.id}}">
+          <div>
+            <div>
+              <span class="display-name">{{chat.other.displayName}} </span>&nbsp;
+              <span class="username">@{{chat.other.username}}</span>
+            </div>
+            <div class="last-message">
+              {{getLastAuthor(chat)}}: {{getLastMessage(chat)}}
+            </div>
+          </div>
+          <div>
+            <span class="unread-count" *ngIf="getUnreadCount(chat)">{{getUnreadCount(chat)}}</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
-<p *ngIf="!loading">
-  loaded
-</p>

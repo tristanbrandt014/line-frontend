@@ -12,11 +12,17 @@ export const ChatFragment = gql`
   fragment ChatFragment on Chat {
     id
     messages {
-      from {
-        ...UserFragment
-      }
-      content
-      read
+      ...MessageFragment
     }
+  }
+`;
+
+export const MessageFragment = gql`
+  fragment MessageFragment on Message {
+    from {
+      ...UserFragment
+    }
+    content
+    read
   }
 `;

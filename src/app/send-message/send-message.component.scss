@@ -1,0 +1,24 @@
+@import '../../assets/style/vars';
+.container {
+  display: flex;
+  padding: $space-large;
+}
+
+.input {
+  flex: 1 1 100%;
+}
+
+.send {
+  flex: 0 0 auto;
+  padding-left: $space-large;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  color: $color-primary;
+}
+
+.icon.disabled {
+  color: $color-disabled;
+}

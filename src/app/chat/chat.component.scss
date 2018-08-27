@@ -1,0 +1,37 @@
+@import '../../assets/style/vars';
+h2 {
+  margin: 0;
+}
+
+.message {
+  padding-bottom: $space-large;
+}
+
+.messages-container {
+  padding: $space-large;
+  flex: 1 1 100%;
+  overflow-y: auto;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  flex: 0 0 auto;
+}
+
+.content {
+  flex: 1 1 100%;
+}
+
+.send {
+  flex: 0 0 auto;
+}

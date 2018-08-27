@@ -1,11 +1,5 @@
 import { gql } from 'apollo-angular-boost';
-import { UserFragment, ChatFragment } from './fragments';
-
-export const getChat = gql`
-  query getChat {
-    getChat
-  }
-`;
+import { UserFragment, ChatFragment, MessageFragment } from './fragments';
 
 export const getUsers = gql`
   query getUsers($offset: Int, $first: Int, $filters: UserListFilters!) {
@@ -37,5 +31,39 @@ export const getUser = gql`
       }
     }
   }
+  ${UserFragment}
+`;
+
+export const getChats = gql`
+  query getChats($offset: Int, $first: Int, $filters: ChatListFilters!) {
+    getChats(offset: $offset, first: $first, filters: $filters) {
+      total
+      results {
+        ...ChatFragment
+        other {
+          ...UserFragment
+        }
+      }
+    }
+  }
+  ${ChatFragment}
+  ${MessageFragment}
+  ${UserFragment}
+`;
+
+export const getChatWithUser = gql`
+  query getChatWithUser($conditions: ChatConditions!) {
+    getChat(conditions: $conditions) {
+      ...ChatFragment
+      other {
+        ...UserFragment
+      }
+    }
+    getMe {
+      ...UserFragment
+    }
+  }
+  ${ChatFragment}
+  ${MessageFragment}
   ${UserFragment}
 `;

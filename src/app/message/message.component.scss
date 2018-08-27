@@ -1,0 +1,23 @@
+@import '../../assets/style/vars';
+.wrapper {
+  display: flex;
+}
+
+.wrapper.is-me {
+  flex-direction: row-reverse;
+}
+
+.container {
+  border: $border-default;
+  padding: $space-medium;
+  max-width: 70%;
+}
+
+.is-me.container {
+  border-color: $color-primary;
+}
+
+.name {
+  font-weight: 600;
+  margin-bottom: $space-small;
+}

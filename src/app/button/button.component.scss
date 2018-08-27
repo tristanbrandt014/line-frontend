@@ -6,17 +6,26 @@
   font-weight: 600;
   cursor: pointer;
   transition: $transition-default;
-  color: $color-primary;
-  background: transparent;
+  color: $color-text-dark;
+  background: $color-primary;
 }
 
 .button:hover {
-  color: $color-text-dark;
-  background: $color-primary;
+  color: $color-primary;
+  background: transparent;
 }
 
 .button:disabled {
   color: $color-disabled;
   border: $border-disabled;
   background: transparent;
+}
+
+.button.transparent {
+  background: transparent;
+  border: none;
+}
+
+.button.transparent:disabled .icon {
+  color: $color-disabled;
 }

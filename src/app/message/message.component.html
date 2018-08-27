@@ -1,0 +1,10 @@
+<div class="wrapper" [class.is-me]="isMe">
+  <div class="container" [class.is-me]="isMe">
+    <div *ngIf="!isMe" class="name">
+      {{message.from.displayName}}
+    </div>
+    <div class="content">
+      {{message.content}}
+    </div>
+  </div>
+</div>

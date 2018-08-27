@@ -2,8 +2,9 @@ import { IUser } from './user';
 
 export interface IChat {
   id: string;
-  users: IUser[];
+  users?: IUser[];
   messages: IMessage[];
+  other: IUser;
 }
 
 export interface IMessage {
@@ -11,4 +12,28 @@ export interface IMessage {
   from: IUser;
   content: string;
   read: boolean;
+}
+
+export interface IChatListFilters {
+  mine?: boolean;
+}
+
+export interface IChatListVariables {
+  offset?: number;
+  first?: number;
+  filters: IChatListFilters;
+}
+
+export interface IChatConditions {
+  id?: string;
+  userId?: string;
+}
+
+export interface IChatWithUserResult {
+  getChat: IChat;
+  getMe: IUser;
+}
+
+export interface IChatVariables {
+  conditions: IChatConditions;
 }

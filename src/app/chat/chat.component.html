@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="header">
+    <app-header-back>
+      <h2 *ngIf="!loading">{{chat.other.displayName}}</h2>
+    </app-header-back>
+  </div>
+  <div class="content">
+    <div #messagesContainer class="messages-container" id="messages-container">
+      <div *ngIf="!loading">
+        <div class="message" *ngFor="let message of chat.messages">
+          <app-message [me]="me" [message]="message"></app-message>
+        </div>
+      </div>
+      <div *ngIf="loading" class="centerer">
+        <app-loader></app-loader>
+      </div>
+    </div>
+    <div class="send">
+      <app-send-message [me]="me" [id]="id"></app-send-message>
+    </div>
+  </div>
+</div>

@@ -32,6 +32,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { PeopleComponent } from './people/people.component';
 import { NewChatComponent } from './new-chat/new-chat.component';
 import { HeaderBackComponent } from './header-back/header-back.component';
+import { ChatComponent } from './chat/chat.component';
+import { MessageComponent } from './message/message.component';
+import { SendMessageComponent } from './send-message/send-message.component';
+import { MessagesContainerComponent } from './messages-container/messages-container.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,11 @@ import { HeaderBackComponent } from './header-back/header-back.component';
     SidebarComponent,
     PeopleComponent,
     NewChatComponent,
-    HeaderBackComponent
+    HeaderBackComponent,
+    ChatComponent,
+    MessageComponent,
+    SendMessageComponent,
+    MessagesContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +80,19 @@ export class AppModule {
         reconnect: true
       }
     });
+
+    const subscriptionMiddleware = {
+      applyMiddleware(options, next) {
+        const token = localStorage.getItem('id_token');
+        if (token) {
+          options.token = token;
+        }
+        next();
+      }
+    };
+
+    // @ts-ignore
+    ws.subscriptionClient.use([subscriptionMiddleware]);
 
     const auth = setContext((_, { headers }) => {
       const token = localStorage.getItem('id_token');

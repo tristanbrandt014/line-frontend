@@ -22,6 +22,7 @@
     "@angular/router": "^6.1.0",
     "@ngxs/store": "^3.2.0",
     "@types/async": "2.0.31",
+    "@types/zenscroll": "^4.0.0",
     "apollo-angular-boost": "^1.0.0",
     "apollo-link-context": "^1.0.8",
     "apollo-link-ws": "^1.0.8",
@@ -32,6 +33,7 @@
     "rxjs": "^6.0.0",
     "simple-line-icons": "^2.4.1",
     "subscriptions-transport-ws": "^0.9.14",
+    "zenscroll": "^4.0.2",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

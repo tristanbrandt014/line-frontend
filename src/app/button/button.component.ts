@@ -9,6 +9,9 @@ export class ButtonComponent implements OnInit {
   @Input()
   disabled;
 
+  @Input()
+  transparent;
+
   constructor() {}
 
   ngOnInit() {}

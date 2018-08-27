@@ -1,0 +1,13 @@
+<form (submit)="handleSubmit($event)" #newChatForm="ngForm" action="" class="container">
+  <div class="input">
+    <div class="input">
+      <div class="line-input-container">
+        <label class="line-input-label" for="message">message</label>
+        <textarea [(ngModel)]="model.message" placeholder="message" class="line-input" type="text" name="message" id="message"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="send">
+    <app-button [disabled]="!model.message" [transparent]="true"><i [class.disabled]="!model.message" class="icon icon-paper-plane"></i></app-button>
+  </div>
+</form>
