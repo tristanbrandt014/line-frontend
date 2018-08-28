@@ -12,7 +12,17 @@
   flex: 1 1 100%;
   display: flex;
   flex-direction: column;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
 }
+
+@media (min-width: $max-width) {
+  .container {
+    border: $border-primary;
+  }
+}
+
 .content {
   display: flex;
   flex-direction: column;

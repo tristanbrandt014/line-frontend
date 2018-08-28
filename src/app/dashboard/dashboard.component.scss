@@ -1,3 +1,4 @@
+@import '../../assets/style/vars';
 .container {
   display: flex;
   flex-direction: column;
@@ -10,4 +11,13 @@
 
 .content {
   flex: 1 1 100%;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: $max-width) {
+  .content {
+    border: $border-primary;
+  }
 }
