@@ -17,6 +17,15 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: $max-width) {
+  .container {
+    border: $border-primary;
+  }
 }
 
 .input {
