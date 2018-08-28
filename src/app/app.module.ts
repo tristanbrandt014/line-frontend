@@ -36,6 +36,8 @@ import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './message/message.component';
 import { SendMessageComponent } from './send-message/send-message.component';
 import { MessagesContainerComponent } from './messages-container/messages-container.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { MessagesContainerComponent } from './messages-container/messages-contai
     ChatComponent,
     MessageComponent,
     SendMessageComponent,
-    MessagesContainerComponent
+    MessagesContainerComponent,
+    ProfileComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -75,24 +79,14 @@ export class AppModule {
     const http = httpLink.create({ uri: 'http://192.168.0.153:4000/graphql' });
 
     const ws = new WebSocketLink({
-      uri: `ws://localhost:4000/graphql`,
+      uri: `ws://192.168.0.153:4000/graphql`,
       options: {
-        reconnect: true
+        reconnect: true,
+        connectionParams: {
+          authorization: localStorage.getItem('id_token') || ''
+        }
       }
     });
-
-    const subscriptionMiddleware = {
-      applyMiddleware(options, next) {
-        const token = localStorage.getItem('id_token');
-        if (token) {
-          options.token = token;
-        }
-        next();
-      }
-    };
-
-    // @ts-ignore
-    ws.subscriptionClient.use([subscriptionMiddleware]);
 
     const auth = setContext((_, { headers }) => {
       const token = localStorage.getItem('id_token');
@@ -135,7 +129,7 @@ export class AppModule {
     );
 
     apollo.create({
-      link: auth.concat(authErrorLink).concat(http),
+      link: auth.concat(authErrorLink).concat(link),
       cache: new InMemoryCache()
       // other options like cache
     });

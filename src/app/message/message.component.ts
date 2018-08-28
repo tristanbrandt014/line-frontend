@@ -14,7 +14,19 @@ export class MessageComponent implements OnInit {
   @Input()
   me: IUser;
 
+  @Input()
+  term: string;
+
   isMe: boolean;
+
+  highlight(term: string, content: string) {
+    if (!term) {
+      return content;
+    }
+    return content.replace(new RegExp(term, 'gi'), match => {
+      return '<span class="highlight">' + match + '</span>';
+    });
+  }
 
   constructor() {}
 

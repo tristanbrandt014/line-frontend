@@ -56,9 +56,11 @@ export class SendMessageComponent implements OnInit, OnDestroy {
           __typename: 'Mutation',
           sendMessage: {
             __typename: 'Message',
+            id: '',
             content: this.model.message,
             from: this.me,
-            read: false
+            read: false,
+            timestamp: new Date().getTime() / 1000
           }
         },
         update: (store, { data }) => {

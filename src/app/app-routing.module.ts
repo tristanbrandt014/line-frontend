@@ -8,6 +8,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PeopleComponent } from './people/people.component';
 import { NewChatComponent } from './new-chat/new-chat.component';
 import { ChatComponent } from './chat/chat.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard/chats', pathMatch: 'full' },
@@ -24,8 +26,17 @@ const routes: Routes = [
       {
         path: 'people',
         component: PeopleComponent
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
       }
     ]
+  },
+  {
+    path: 'search',
+    component: SearchComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'chat/new/:user_id',
@@ -34,7 +45,8 @@ const routes: Routes = [
   },
   {
     path: 'chat/:id',
-    component: ChatComponent
+    component: ChatComponent,
+    canActivate: [AuthGuard]
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }

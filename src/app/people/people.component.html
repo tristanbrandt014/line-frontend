@@ -9,12 +9,12 @@
           nobody here
         </div>
         <div class="nobody-subtitle">
-          Solitude, isolation, are painful things and beyond human endurance - <em>Jules Verne</em>
+          solitude, isolation, are painful things and beyond human endurance - <em>Jules Verne</em>
         </div>
       </div>
     </div>
     <div *ngIf="!!total">
-      <h2>People</h2>
+      <h2>people</h2>
       <div class="list">
         <a class="user" *ngFor="let user of users" routerLink="/chat/new/{{user.id}}">
           <div class="display-name">{{user.displayName}}</div>

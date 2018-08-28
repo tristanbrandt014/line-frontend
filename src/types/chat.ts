@@ -12,6 +12,7 @@ export interface IMessage {
   from: IUser;
   content: string;
   read: boolean;
+  timestamp: number;
 }
 
 export interface IChatListFilters {

@@ -55,3 +55,9 @@ export const sendMessage = gql`
   ${MessageFragment}
   ${UserFragment}
 `;
+
+export const markRead = gql`
+  mutation markRead($chatId: String!) {
+    markRead(chatId: $chatId)
+  }
+`;

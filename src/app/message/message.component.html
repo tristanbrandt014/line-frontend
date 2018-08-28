@@ -3,8 +3,6 @@
     <div *ngIf="!isMe" class="name">
       {{message.from.displayName}}
     </div>
-    <div class="content">
-      {{message.content}}
-    </div>
+    <div class="content" [innerHTML]="highlight(term, message.content)"></div>
   </div>
 </div>

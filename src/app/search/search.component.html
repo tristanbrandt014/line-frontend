@@ -1,0 +1,34 @@
+<div class="container">
+  <app-header-back>
+    <div class="input search-input">
+      <label class="line-input-label" for="term">search</label>
+      <input autofocus #searchBox (keyup)="search(searchBox.value)" placeholder="search" class="line-input" type="text" name="term"
+        id="term" />
+    </div>
+    <div (click)="searchBox.value=''" class=" search-icon ">
+      <i class="icon icon-close "></i>
+    </div>
+  </app-header-back>
+  <div class="content">
+    <div *ngIf="loading" class="centerer">
+      <app-loader></app-loader>
+    </div>
+    <div *ngIf="!loading && !searchBox.value" class="centerer"> start typing
+    </div>
+    <div *ngIf="!loading && searchBox.value && results.length" class="results">
+      <div>
+        <div class="result" *ngFor="let result of results">
+          <a routerLink="/chat/{{result.chat.id}}">
+            <h3>{{result.chat.other.displayName}}</h3>
+            <div class="message" *ngFor="let message of result.matches">
+              <app-message [term]="searchBox.value" [me]="me" [message]="message"></app-message>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="centerer" *ngIf="!loading && searchBox.value && !results.length">
+      no results
+    </div>
+  </div>
+</div>

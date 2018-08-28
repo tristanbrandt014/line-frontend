@@ -19,10 +19,12 @@ export const ChatFragment = gql`
 
 export const MessageFragment = gql`
   fragment MessageFragment on Message {
+    id
     from {
       ...UserFragment
     }
     content
     read
+    timestamp
   }
 `;

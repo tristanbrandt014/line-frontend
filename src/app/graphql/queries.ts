@@ -67,3 +67,25 @@ export const getChatWithUser = gql`
   ${MessageFragment}
   ${UserFragment}
 `;
+
+export const searchChatWithUser = gql`
+  query searchChatsWithUser($term: String!) {
+    searchChats(term: $term) {
+      chat {
+        ...ChatFragment
+        other {
+          ...UserFragment
+        }
+      }
+      matches {
+        ...MessageFragment
+      }
+    }
+    getMe {
+      ...UserFragment
+    }
+  }
+  ${ChatFragment}
+  ${MessageFragment}
+  ${UserFragment}
+`;

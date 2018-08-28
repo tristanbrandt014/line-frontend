@@ -3,4 +3,16 @@
   display: flex;
   justify-content: space-between;
   padding: $space-large;
+  align-items: center;
+}
+
+.content {
+  flex: 1;
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+}
+
+.left {
+  width: 25px;
 }
