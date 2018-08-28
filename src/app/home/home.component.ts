@@ -81,8 +81,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           messages: [...oldChat.messages]
         };
         updatedChat.messages.push(result.data.newMessage.message);
-        console.log('result', result);
-        // return prev;
         return {
           ...prev,
           getChats: {
@@ -101,9 +99,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         token: localStorage.getItem('id_token')
       },
       updateQuery: (prev: IResponse, { subscriptionData }): IResponse => {
-        console.log('new chats');
         const result = subscriptionData as INewChatSubscription;
-        console.log('result', result);
         return {
           ...prev,
           getChats: {

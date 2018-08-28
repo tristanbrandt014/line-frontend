@@ -58,7 +58,6 @@ export class NewChatComponent implements OnInit, OnDestroy {
         },
         update: (store, { data }) => {
           const response = data as IMutationResponse;
-          console.log(response);
           try {
             const userData = store.readQuery<IResponse, IChatVariables>({
               query: getUserGQL,
@@ -75,14 +74,7 @@ export class NewChatComponent implements OnInit, OnDestroy {
           }
         }
       })
-      .subscribe(
-        ({ data }) => {
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      .subscribe(({ data }) => {}, error => {});
   }
 
   ngOnInit() {
