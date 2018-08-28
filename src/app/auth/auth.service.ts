@@ -15,12 +15,16 @@ export class AuthService {
 
     localStorage.setItem('id_token', token);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    // Quick fix to recreate apollo client
+    location.reload();
   }
 
   logout() {
     this.apollo.getClient().cache.reset();
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    // Quick fix to recreate apollo client
+    location.reload();
   }
 
   public isAuthenticated() {
