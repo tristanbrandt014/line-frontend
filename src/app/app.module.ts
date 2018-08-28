@@ -38,6 +38,7 @@ import { SendMessageComponent } from './send-message/send-message.component';
 import { MessagesContainerComponent } from './messages-container/messages-container.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -76,10 +77,10 @@ import { SearchComponent } from './search/search.component';
 })
 export class AppModule {
   constructor(apollo: Apollo, httpLink: HttpLink, router: Router) {
-    const http = httpLink.create({ uri: 'http://192.168.0.153:4000/graphql' });
+    const http = httpLink.create({ uri: environment.apiHttp });
 
     const ws = new WebSocketLink({
-      uri: `ws://192.168.0.153:4000/graphql`,
+      uri: environment.apiWS,
       options: {
         reconnect: true,
         connectionParams: {
